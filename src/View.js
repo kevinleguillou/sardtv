@@ -34,11 +34,13 @@ class TwitchView{
 	}
 	registerListeners(){
 		this.player.addEventListener(Twitch.Player.READY, ()=>{
-			if(this.playbackSettings.timestamp){
-				this.player.seek(this.playbackSettings.timestamp);
-			}
+			
 		});
 		this.player.addEventListener(Twitch.Player.PLAYING, ()=>{
+			if(this.playbackSettings.timestamp){
+				this.player.seek(this.playbackSettings.timestamp);
+				this.player.setMuted(false);
+			}
 			this.hideLoader();
 		});
 		window.addEventListener("resize", ()=>{
