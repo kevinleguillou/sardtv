@@ -22,7 +22,7 @@ export default class UI{
 			};
 			this.casterSettings = {
 				video: "499832186",
-				timestamp: "14300",
+				timestamp: "04h04m32s",
 			};
 		}
 
