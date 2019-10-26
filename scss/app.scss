@@ -1,0 +1,108 @@
+@import "reset.scss";
+@import "helpers.scss";
+@import "animations.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+
+$font: "Roboto", sans-serif;
+$dark100: #18181a;
+$light: #ffffff;
+$important: #e46155;
+$league: #196fd4;
+$twitch: #9147ff;
+
+html, body{ height: 100%; margin: 0; padding: 0; }
+body{
+	display: flex; align-items: center; justify-content: center; background: $dark100;
+	font-family: $font; font-size: 16px; color: white;
+}
+
+/* Loader animation */
+
+#main-view, #caster-view, #live-chat{ position: relative; overflow: hidden; }
+.is-loading .loader{ opacity: 1; }
+.loader{
+	position: absolute; z-index: 1; width: 100%; height: 100%; left: 0; top: 0; 
+	display: flex; align-items: center; justify-content: center; 
+	pointer-events: none; opacity: 0; transition: all 300ms ease;
+	background: radial-gradient(lighten($dark100, 10%), $dark100);
+	&:before{
+		display: block; content: ""; width: 4rem; height: 4rem;
+		background: no-repeat center center / cover;
+		animation: pulse 1.25s ease both infinite;
+	}
+	&:after{
+		position: absolute; z-index: -1; display: block; content: ""; width: 4rem; height: 4rem; border-radius: 4rem;
+		background: $dark100; animation: loading 1.25s ease both infinite;
+	}
+}
+#main-view .loader:before{ @include icon(2, 0, 4rem); }
+#caster-view .loader:before{ @include icon(1, 0, 4rem); }
+#live-chat .loader:before{ @include icon(0, 0, 4rem); }
+
+#main-view{
+	position: relative; display: flex; align-items: center; width: 75vw; height: 100%;
+	&.timer-focus{ align-items: flex-start; }
+	iframe{ transition: all 300ms ease; }
+	&.timer-focus iframe{ transform: scale(10); transform-origin: center top; }
+	&.game-focus iframe{ transform: scale(1); transform-origin: 50% 50%; }
+
+	&:hover .controls{ transform: translateY(0); }
+}
+
+aside{
+	position: relative; display: flex; flex-direction: column;
+	width: 25vw; height: 100%;
+}
+
+#caster-view{
+	height: 25vw*(9/16);
+	iframe{ transition: all 300ms ease; }
+	&.caster-focus iframe{ transform: scale(2.4); transform-origin: 100% 92%; }
+	&.timer-focus iframe{ transform: scale(3); transform-origin: 50% 10%; }
+}
+
+#live-chat{
+	flex: 1;
+	#live-chat-embed{ position: absolute; width: 100%; height: calc(100vh + 17vh - (25vw*(9/16))); top: -17vh; }
+}
+
+.controls{
+	position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
+	transition: all 300ms ease; transform: translateY(-3rem);
+
+	.sync-controls{ display: flex; justify-content: center; }
+	.screen-controls{ position: absolute; right: 1rem; }
+
+	.button{
+		display: flex; align-items: center; justify-content: center; height: 2rem; padding: 0 1rem; border: none;
+		color: $light; font-size: 0.75rem; line-height: 2rem; font-weight: bold; text-align: center; text-transform: uppercase; text-decoration: none;
+		&:hover{ cursor: pointer; }
+		&:active{ transform: scale(0.9); }
+		&:focus{ outline: none; }
+		&:before{
+			display: block; content: ""; width: 1rem; height: 1rem; background: no-repeat center center / contain;
+			margin-right: 0.5rem;
+		}
+	}
+	#sync{ background: $important; border-radius: 1rem; }
+	#sync:hover{ background-color: mix($important, $light, 80%); }
+	#sync:before{ @include icon(2, 1); }
+	#game-control, #caster-control{ visibility: hidden; }
+	#game-control{ background: $league; border-radius: 1rem 0 0 1rem; }
+	#game-control:hover{ background: mix($league, $light, 80%); }
+	#caster-control{ background: $twitch; border-radius: 0 1rem 1rem 0; }
+	#caster-control:hover{ background: mix($twitch, $light, 80%); }
+	#game-control:before, #caster-control:before{ @include icon(0, 1); }
+	#game-control.paused:before, #caster-control.paused:before{ @include icon(1, 1); }
+	#fullscreen{ background: $twitch; border-radius: 1rem; }
+	#fullscreen:hover{ background: mix($twitch, $light, 80%); }
+	#fullscreen:before{ @include icon(3, 0); }
+
+	.timer-focus &{
+		#sync{ border-radius: 0; }
+		#sync span{ display: none; }
+		#sync:before{ @include icon(3, 1); margin: 0; }
+		#game-control, #caster-control{ visibility: visible; }
+	}
+}

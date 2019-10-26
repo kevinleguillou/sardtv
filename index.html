@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sardoche Worlds</title>
+	<link rel="stylesheet" href="dist/app.css">
+	<script async src="https://player.twitch.tv/js/embed/v1.js"></script>
+	<script async src="https://www.youtube.com/iframe_api"></script>
+	<script async src="dist/bundle.js"></script>	
+</head>
+<body>
+
+<main id="main-view" class="is-loading">
+	<div class="controls">
+		<div class="sync-controls">
+			<button class="button" id="game-control">Match</button>
+			<button class="button" id="sync"><span>Sync</span></button>
+			<button class="button" id="caster-control">Sardoche</button>
+		</div>
+		<div class="screen-controls">
+			<button class="button" id="fullscreen">Plein écran</button>
+		</div>
+	</div>
+	<div class="loader"></div>
+	<div id="youtube-player"></div>
+</main>
+
+<aside>
+	<section id="caster-view" class="is-loading">
+		<div class="loader"></div>
+	</section>
+	<section id="live-chat" class="is-loading">
+		<div class="loader"></div>
+		<iframe frameborder="0" scrolling="yes" id="live-chat-embed" src="https://www.twitch.tv/embed/sardoche/chat?darkpopout">
+		</iframe>
+	</section>
+</aside>
+
+</body>
+</html>

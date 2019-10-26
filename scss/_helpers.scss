@@ -1,0 +1,13 @@
+/*
+	$x, $y
+		Coords of the icon in the sprite
+	$size
+		Size of the icon
+*/
+$spriteSize: 8;
+@mixin icon($x: 0, $y: 0, $size: 1rem){
+	background-color: transparent;
+	background-image: url(assets/icons.svg);
+	background-position: (-$x*$size) (-$y*$size);
+	background-size: $spriteSize * ($size/2);
+}
