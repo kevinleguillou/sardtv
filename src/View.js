@@ -34,14 +34,16 @@ class TwitchView{
 	}
 	registerListeners(){
 		this.player.addEventListener(Twitch.Player.READY, ()=>{
-			
 		});
 		this.player.addEventListener(Twitch.Player.PLAYING, ()=>{
 			if(this.playbackSettings.timestamp){
 				this.player.seek(this.playbackSettings.timestamp);
-				this.player.setMuted(false);
+				document.querySelector("#caster-volume").value = this.player.getVolume() * 100;
 			}
 			this.hideLoader();
+		});
+		document.querySelector("#caster-volume").addEventListener("input", (event)=>{
+			this.player.setVolume(event.srcElement.value/100);
 		});
 		window.addEventListener("resize", ()=>{
 			this.setSize();

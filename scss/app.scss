@@ -47,6 +47,46 @@ body{
 	&.timer-focus iframe{ transform: scale(10); transform-origin: center top; }
 	&.game-focus iframe{ transform: scale(1); transform-origin: 50% 50%; }
 
+	.controls{
+		position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
+		transition: all 300ms ease; transform: translateY(-3rem);
+
+		.sync-controls{ display: flex; justify-content: center; }
+		.screen-controls{ position: absolute; right: 1rem; }
+
+		.button{
+			display: flex; align-items: center; justify-content: center; height: 2rem; padding: 0 1rem; border: none;
+			color: $light; font-size: 0.75rem; line-height: 2rem; font-weight: bold; text-align: center; text-transform: uppercase; text-decoration: none;
+			&:hover{ cursor: pointer; }
+			&:active{ transform: scale(0.9); }
+			&:focus{ outline: none; }
+			&:before{
+				display: block; content: ""; width: 1rem; height: 1rem; background: no-repeat center center / contain;
+				margin-right: 0.5rem;
+			}
+		}
+		#sync{ background: $important; border-radius: 1rem; }
+		#sync:hover{ background-color: mix($important, $light, 80%); }
+		#sync:before{ @include icon(2, 1); }
+		#game-control, #caster-control{ visibility: hidden; }
+		#game-control{ background: $league; border-radius: 1rem 0 0 1rem; }
+		#game-control:hover{ background: mix($league, $light, 80%); }
+		#caster-control{ background: $twitch; border-radius: 0 1rem 1rem 0; }
+		#caster-control:hover{ background: mix($twitch, $light, 80%); }
+		#game-control:before, #caster-control:before{ @include icon(0, 1); }
+		#game-control.paused:before, #caster-control.paused:before{ @include icon(1, 1); }
+		#fullscreen{ background: $twitch; border-radius: 1rem; }
+		#fullscreen:hover{ background: mix($twitch, $light, 80%); }
+		#fullscreen:before{ @include icon(3, 0); }
+
+		.timer-focus &{
+			#sync{ border-radius: 0; }
+			#sync span{ display: none; }
+			#sync:before{ @include icon(3, 1); margin: 0; }
+			#game-control, #caster-control{ visibility: visible; }
+		}
+	}
+
 	&:hover .controls{ transform: translateY(0); }
 }
 
@@ -60,49 +100,26 @@ aside{
 	iframe{ transition: all 300ms ease; }
 	&.caster-focus iframe{ transform: scale(2.4); transform-origin: 100% 92%; }
 	&.timer-focus iframe{ transform: scale(3); transform-origin: 50% 10%; }
+
+	.controls{
+		position: absolute; z-index: 1; bottom: 0; width: 100%; padding: 1rem; box-sizing: border-box;
+		display: flex; align-items: center; visibility: hidden;
+		.icon{ width: 1rem; height: 1rem; margin-right: 0.5rem; }
+		#volume-icon{ @include icon(1, 2); }
+		#caster-volume{
+			flex: 1; background: $light; margin: 0; -webkit-appearance: none;
+			&:focus{ outline: none; }
+			&:hover{ cursor: pointer; }
+			&::-webkit-slider-runnable-track{ background: $twitch; }
+			&::-moz-range-track{ background: $twitch; }
+			&::-webkit-slider-thumb{ -webkit-appearance: none; background: $light; width: 1rem; height: 1rem; }
+			&::-moz-range-thumb{ background: $light; appearance: none; }
+		}
+	}
+	&:hover .controls{ visibility: visible; }
 }
 
 #live-chat{
 	flex: 1;
 	#live-chat-embed{ position: absolute; width: 100%; height: calc(100vh + 17vh - (25vw*(9/16))); top: -17vh; }
-}
-
-.controls{
-	position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
-	transition: all 300ms ease; transform: translateY(-3rem);
-
-	.sync-controls{ display: flex; justify-content: center; }
-	.screen-controls{ position: absolute; right: 1rem; }
-
-	.button{
-		display: flex; align-items: center; justify-content: center; height: 2rem; padding: 0 1rem; border: none;
-		color: $light; font-size: 0.75rem; line-height: 2rem; font-weight: bold; text-align: center; text-transform: uppercase; text-decoration: none;
-		&:hover{ cursor: pointer; }
-		&:active{ transform: scale(0.9); }
-		&:focus{ outline: none; }
-		&:before{
-			display: block; content: ""; width: 1rem; height: 1rem; background: no-repeat center center / contain;
-			margin-right: 0.5rem;
-		}
-	}
-	#sync{ background: $important; border-radius: 1rem; }
-	#sync:hover{ background-color: mix($important, $light, 80%); }
-	#sync:before{ @include icon(2, 1); }
-	#game-control, #caster-control{ visibility: hidden; }
-	#game-control{ background: $league; border-radius: 1rem 0 0 1rem; }
-	#game-control:hover{ background: mix($league, $light, 80%); }
-	#caster-control{ background: $twitch; border-radius: 0 1rem 1rem 0; }
-	#caster-control:hover{ background: mix($twitch, $light, 80%); }
-	#game-control:before, #caster-control:before{ @include icon(0, 1); }
-	#game-control.paused:before, #caster-control.paused:before{ @include icon(1, 1); }
-	#fullscreen{ background: $twitch; border-radius: 1rem; }
-	#fullscreen:hover{ background: mix($twitch, $light, 80%); }
-	#fullscreen:before{ @include icon(3, 0); }
-
-	.timer-focus &{
-		#sync{ border-radius: 0; }
-		#sync span{ display: none; }
-		#sync:before{ @include icon(3, 1); margin: 0; }
-		#game-control, #caster-control{ visibility: visible; }
-	}
 }
