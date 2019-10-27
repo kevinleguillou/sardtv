@@ -38,12 +38,16 @@ class TwitchView{
 		this.player.addEventListener(Twitch.Player.PLAYING, ()=>{
 			if(this.playbackSettings.timestamp){
 				this.player.seek(this.playbackSettings.timestamp);
-				document.querySelector("#caster-volume").value = this.player.getVolume() * 100;
 			}
+			document.querySelector("#caster-volume").value = this.player.getVolume() * 100;
 			this.hideLoader();
+		});
+		this.player.addEventListener(Twitch.Player.PLAYBACK_BLOCKED, ()=>{
+			console.log("PLAYBACK_BLOCKED");
 		});
 		document.querySelector("#caster-volume").addEventListener("input", (event)=>{
 			this.player.setVolume(event.srcElement.value/100);
+			this.player.setMuted(false);
 		});
 		window.addEventListener("resize", ()=>{
 			this.setSize();
