@@ -78,13 +78,13 @@ body{
 		#fullscreen{ background: $twitch; border-radius: 1rem; }
 		#fullscreen:hover{ background: mix($twitch, $light, 80%); }
 		#fullscreen:before{ @include icon(3, 0); }
+	}
 
-		.timer-focus &{
-			#sync{ border-radius: 0; }
-			#sync span{ display: none; }
-			#sync:before{ @include icon(3, 1); margin: 0; }
-			#game-control, #caster-control{ visibility: visible; }
-		}
+	&.timer-focus .controls{
+		#sync{ border-radius: 0; }
+		#sync span{ display: none; }
+		#sync:before{ @include icon(3, 1); margin: 0; }
+		#game-control, #caster-control{ visibility: visible; }
 	}
 
 	&:hover .controls{ transform: translateY(0); }
