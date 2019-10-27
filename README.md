@@ -10,6 +10,8 @@ L'app utilise les APIs de [Youtube](https://developers.google.com/youtube/iframe
 
 Tout est en vanilla JS car pas besoin de sophistications sur ce projet. J'utilise les possibilités de ES6 afin de clarifier le code et isoler les concepts dans des classes, d'où le besoin de Webpack.
 
+[Quelques ressources pour mieux comprendre l'ES6](https://gist.github.com/kevinleguillou/a509a55122f72ef334efb652dd319664)
+
 ## Développer
 
 Pour initialiser le projet, il faut installer les dépendances NPM avec `yarn` ou `npm`.
