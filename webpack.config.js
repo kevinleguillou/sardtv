@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-	mode: "development",
+	mode: "production",
 	entry: './src/index.js',
 	resolve: {
 		modules: [path.resolve(__dirname, 'src'), 'node_modules'],

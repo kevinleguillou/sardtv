@@ -10,6 +10,6 @@
 		"webpack-cli": "^3.3.9"
 	},
 	"scripts": {
-		"sass": "sass --watch --style=expanded --no-source-map --load-path=scss scss/app.scss dist/app.css"
+		"sass": "sass --watch --style=compressed --no-source-map --load-path=scss scss/app.scss dist/app.css"
 	}
 }
