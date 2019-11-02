@@ -62,6 +62,14 @@ export default class UI{
 			}
 		});
 
+		// Toggle Settings
+		document.querySelector("#open-settings").addEventListener("click", (event)=>{
+			document.querySelector("#settings").classList.add("toggled");
+		});
+		document.querySelector("#close-settings").addEventListener("click", (event)=>{
+			document.querySelector("#settings").classList.remove("toggled");
+		});
+
 		// Hide the chat loader once the iframe is loaded
 		document.querySelector("#live-chat-embed").addEventListener("load", (event)=>{
 			document.querySelector("#live-chat").classList.remove("is-loading");

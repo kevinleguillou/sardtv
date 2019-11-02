@@ -4,7 +4,7 @@
 @import "helpers.scss";
 @import "animations.scss";
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 
 $font: "Roboto", sans-serif;
 $dark100: #18181a;
@@ -18,6 +18,10 @@ body{
 	display: flex; align-items: center; justify-content: center; background: $dark100;
 	font-family: $font; font-size: 16px; color: white;
 }
+a{ text-decoration: none; }
+button{ -webkit-appearance: none; }
+button:hover{ cursor: pointer; }
+button:focus{ outline: none; }
 
 /* Loader animation */
 
@@ -54,13 +58,13 @@ body{
 		transition: all 300ms ease; transform: translateY(-3rem);
 
 		.sync-controls{ display: flex; justify-content: center; transform: translateX(5%); }
+		.settings-controls{ position: absolute; left: 1rem; }
 		.screen-controls{ position: absolute; right: 1rem; }
 		.volume-control{ display: none; }
 
 		.button{
 			display: flex; align-items: center; justify-content: center; height: 2rem; padding: 0 1rem; border: none;
 			color: $light; font-size: 0.75rem; line-height: 2rem; font-weight: bold; text-align: center; text-transform: uppercase; text-decoration: none;
-			&:hover{ cursor: pointer; }
 			&:active{ transform: scale(0.9); -webkit-tap-highlight-color: transparent; }
 			&:focus{ outline: none; box-shadow: none; }
 			&:before{
@@ -68,6 +72,9 @@ body{
 				margin-right: 0.5rem;
 			}
 		}
+		#open-settings{ background: $twitch; border-radius: 1rem; }
+		#open-settings:hover{ background: color.adjust($twitch, $saturation: 35%, $lightness: 10%); }
+		#open-settings:before{ @include icon(0, 3); margin: 0; }
 		#sync{ background: $important; border-radius: 1rem; }
 		#sync:hover{ background: color.adjust($important, $saturation: 35%, $lightness: 10%); }
 		#sync:before{ @include icon(2, 1); }
@@ -149,6 +156,8 @@ aside{
 	#live-chat-embed{ position: absolute; width: 100%; height: calc(100vh + 17vh - (25vw*(9/16))); top: -17vh; }
 }
 
+@import "settings";
+
 @media (orientation: landscape) and (max-width: 48rem){
 	
 	#main-view{
@@ -166,15 +175,13 @@ aside{
 			&.visible{ opacity: 1; }
 			&.visible>*{ pointer-events: all; }
 
-			.screen-controls{ right: 5vw; top: 5vw; }
+			.settings-controls{ top: 5vw; left: 5vw; }
+			.screen-controls{ top: 5vw; right: 5vw; }
 			.volume-control{ display: flex; }
 			.button{
 				height: 7vw; padding: 0 3vw; font-size: 2.5vw; line-height: 7vw;
 			}
-			#sync:hover{ background: $important; }
-			#game-control:hover{ background: $league; }
-			#caster-control:hover{ background: $twitch; }
-			#fullscreen:hover{ background: $twitch; }
+			#open-settings{ border-radius: 7vw; }
 			#sync{ border-radius: 7vw; }
 			#game-control{ border-radius: 7vw 0 0 7vw; }
 			#caster-control{ border-radius: 0 7vw 7vw 0; }
@@ -227,6 +234,7 @@ aside{
 @media (orientation: portrait){
 	#main-view{
 		width: 100%;
+		.controls{ display: none; }
 	}
 	aside{ display: none; }
 }

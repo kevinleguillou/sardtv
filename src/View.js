@@ -41,6 +41,7 @@ class TwitchView{
 			}
 			document.querySelector("#caster-volume").value = this.player.getVolume() * 100;
 			this.hideLoader();
+			this.populateQualitySettings();
 		});
 		this.player.addEventListener(Twitch.Player.PLAYBACK_BLOCKED, ()=>{
 			console.log("PLAYBACK_BLOCKED");
@@ -62,6 +63,31 @@ class TwitchView{
 	}
 	hideLoader(){
 		this.domElement.classList.remove("is-loading");
+	}
+	populateQualitySettings(){
+		let qualities = this.player.getQualities();
+		let currentQuality = this.player.getQuality();
+		let qualitiesHTML = "";
+		qualities.forEach((qualitySetting)=>{
+			if(currentQuality == qualitySetting.group){
+				qualitiesHTML += `<li class="active" data-setting="${qualitySetting.group}">${qualitySetting.name}</li>`;
+			}else{
+				qualitiesHTML += `<li data-setting="${qualitySetting.group}">${qualitySetting.name}</li>`;
+			}
+		});
+		document.querySelector("#twitch-quality-options").innerHTML = qualitiesHTML;
+		document.querySelectorAll("#twitch-quality-options li").forEach((item)=>{
+			item.addEventListener("click", (event)=>{
+				this.setQuality(event.srcElement.getAttribute("data-setting"), event.srcElement);
+			});
+		});
+	}
+	setQuality(quality, element){
+		document.querySelectorAll("#twitch-quality-options li").forEach((item)=>{
+			item.classList.remove("active");
+		});
+		element.classList.add("active");
+		this.player.setQuality(quality);
 	}
 	sync(value){
 		if(value){

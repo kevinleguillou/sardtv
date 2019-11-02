@@ -19,15 +19,46 @@
 	<meta name="twitter:creator" content="@Sardoche_Lol">
 	<meta name="twitter:site" content="@Sardoche_Lol">
 
-	<link rel="stylesheet" href="dist/app.css">
+	<link rel="stylesheet" href="dist/app.css?20191102">
 	<script async src="https://player.twitch.tv/js/embed/v1.js"></script>
 	<script async src="https://www.youtube.com/iframe_api"></script>
-	<script async src="dist/bundle.js"></script>	
+	<script async src="dist/bundle.js?20191102"></script>	
 </head>
 <body>
 
 <main id="main-view" class="is-loading">
+	<div id="settings">
+		<button id="close-settings">Fermer</button>
+		<h2>Paramètres</h2>
+		<div class="settings-container">
+			<!-- <div class="settings-collection">
+				<h3>Match</h3>
+				<div class="label">Qualité</div>
+				<ul class="options" id="youtube-quality-options">
+					<li>480p</li>
+					<li>720p</li>
+					<li class="active">1080p</li>
+				</ul>
+			</div> -->
+			<div class="settings-collection">
+				<h3>Sardoche</h3>
+				<div class="label">Qualité</div>
+				<ul class="options" id="twitch-quality-options">
+					<li>480p</li>
+					<li>720p</li>
+					<li class="active">1080p</li>
+				</ul>
+			</div>
+		</div>
+		<div class="about">
+			<p>Cette page est un petit side-project fait par <a href="https://kevinleguillou.com" target="_blank">Kevin Le Guillou</a> pour simplifier le visionnage du commentaire de Sardoche lors des lives des Worlds de League of Legends.</p>
+			<p><a class="github" href="https://github.com/kevinleguillou/sardtv" target="_blank">Retrouvez le code de ce projet sur GitHub</a></p>
+		</div>
+	</div>
 	<div class="controls">
+		<div class="settings-controls">
+			<button class="button" id="open-settings"></button>
+		</div>
 		<div class="sync-controls">
 			<button class="button" id="game-control">Match</button>
 			<button class="button" id="sync"><span>Sync</span></button>

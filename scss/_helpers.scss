@@ -10,3 +10,7 @@ $spriteSize: 8;
 	background-position: (-$x*$size) (-$y*$size);
 	background-size: $spriteSize * ($size/2);
 }
+
+@mixin noText{
+	color: transparent; font: 0/0 a; text-indent: -100%;
+}
