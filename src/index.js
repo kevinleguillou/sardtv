@@ -1,4 +1,5 @@
 import UI from "UI";
+import TwitchAPI from "TwitchAPI";
 
 function waitForTwitch(){
 	return new Promise((resolve)=>{
@@ -19,3 +20,6 @@ window.onYouTubeIframeAPIReady = ()=>{
 		let ui = new UI;
 	});
 }
+
+let twitchApi = new TwitchAPI;
+twitchApi.updateViewerCount();

@@ -104,6 +104,13 @@ aside{
 	&.caster-focus iframe{ transform: scale(2.4); transform-origin: 100% 92%; }
 	&.timer-focus iframe{ transform: scale(3); transform-origin: 50% 10%; }
 
+	#viewer-count{
+		position: absolute; z-index: 1; top: 0; display: flex; align-items: center; padding: 1rem; visibility: hidden;
+		font-size: 0.9rem; color: $important;
+		&:before{ display: block; content: ""; width: 1rem; height: 1rem; @include icon(0, 2); margin-right: 0.5rem; }
+		&:after{ display: block; content: ""; position: absolute; z-index: -1; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(closest-side, $dark100, rgba($dark100, 0)); }
+	}
+
 	.controls{
 		position: absolute; z-index: 1; bottom: 0; width: 100%; padding: 1rem; box-sizing: border-box;
 		display: flex; align-items: center; visibility: hidden;
@@ -115,7 +122,7 @@ aside{
 			&::-moz-range-thumb{ transform: scale(1.5); border-radius: 1rem; }
 		}
 	}
-	&:hover .controls{ visibility: visible; }
+	&:hover .controls, &:hover #viewer-count{ visibility: visible; }
 }
 
 .volume-control{
@@ -189,6 +196,7 @@ aside{
 		iframe{ pointer-events: none; }
 		&.caster-focus{
 			position: absolute; bottom: 28%; right: 0; width: 7.25vw * (16/9); height: 7.25vw;
+			.loader:before{ height: 2rem; width: 2rem; @include icon(1, 0, 2rem); }
 			iframe{ transform: scale(3); transform-origin: 90% 88%; }
 		}
 		&.timer-focus iframe{ transform: scale(4); transform-origin: center 34%; }
@@ -214,4 +222,11 @@ aside{
 	}
 
 	#live-chat{ display: none; }
+}
+
+@media (orientation: portrait){
+	#main-view{
+		width: 100%;
+	}
+	aside{ display: none; }
 }

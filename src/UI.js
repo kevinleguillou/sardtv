@@ -25,10 +25,15 @@ export default class UI{
 				timestamp: 14666,
 			};
 		}
+		this.isMobile = (/Mobi/i.test(navigator.userAgent));
 
 		this.mainPlayer = new View.YoutubeView("youtube-player", this.matchSettings);
 		this.casterPlayer = new View.TwitchView("caster-view", this.casterSettings);
 		this.registerListeners();
+
+		if(this.isMobile){
+			this.toggleFullscreen();
+		}
 	}
 	registerListeners(){
 		// Register the actions for each button
@@ -52,6 +57,9 @@ export default class UI{
 			if(event.srcElement == document.querySelector("#main-view .controls")){
 				document.querySelector("#main-view .controls").classList.toggle("visible");
 			}
+			if(!document.querySelector("#main-view .controls").classList.contains("visible")){
+				document.querySelector("#mobile-volume-control").classList.remove("toggled");
+			}
 		});
 
 		// Hide the chat loader once the iframe is loaded
@@ -63,6 +71,11 @@ export default class UI{
 		if(!this.fullscreen){
 			document.body.requestFullscreen().then(()=>{
 				this.fullscreen = true;
+				window.screen.orientation.lock("landscape").then(function(){
+					this.landscape = true;
+				}).catch(function(err){
+					this.landscape = false;
+				});
 			}).catch((err)=>{
 				this.fullscreen = false;
 			});
