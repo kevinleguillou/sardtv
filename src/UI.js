@@ -47,6 +47,13 @@ export default class UI{
 			this.toggleFullscreen();
 		});
 
+		// Toggle controls visibility when the screen is tapped on mobile
+		document.querySelector("#main-view .controls").addEventListener("touchend", (event)=>{
+			if(event.srcElement == document.querySelector("#main-view .controls")){
+				document.querySelector("#main-view .controls").classList.toggle("visible");
+			}
+		});
+
 		// Hide the chat loader once the iframe is loaded
 		document.querySelector("#live-chat-embed").addEventListener("load", (event)=>{
 			document.querySelector("#live-chat").classList.remove("is-loading");

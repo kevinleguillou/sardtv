@@ -49,6 +49,13 @@ class TwitchView{
 			this.player.setVolume(event.srcElement.value/100);
 			this.player.setMuted(false);
 		});
+		document.querySelector("#mobile-caster-volume").addEventListener("input", (event)=>{
+			this.player.setVolume(event.srcElement.value/100);
+			this.player.setMuted(false);
+		});
+		document.querySelector("#volume-toggle").addEventListener("click", ()=>{
+			document.querySelector("#mobile-volume-control").classList.toggle("toggled");
+		});
 		window.addEventListener("resize", ()=>{
 			this.setSize();
 		});
@@ -66,6 +73,7 @@ class TwitchView{
 			this.domElement.classList.add("caster-focus");
 			this.domElement.classList.remove("timer-focus");
 		}
+		this.setSize();
 	}
 }
 
@@ -131,6 +139,7 @@ class YoutubeView{
 			this.domElement.classList.add("game-focus");
 			this.domElement.classList.remove("timer-focus");
 		}
+		this.setSize();
 	}
 }
 

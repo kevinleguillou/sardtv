@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import "reset.scss";
 @import "helpers.scss";
 @import "animations.scss";
@@ -51,32 +53,33 @@ body{
 		position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
 		transition: all 300ms ease; transform: translateY(-3rem);
 
-		.sync-controls{ display: flex; justify-content: center; }
+		.sync-controls{ display: flex; justify-content: center; transform: translateX(5%); }
 		.screen-controls{ position: absolute; right: 1rem; }
+		.volume-control{ display: none; }
 
 		.button{
 			display: flex; align-items: center; justify-content: center; height: 2rem; padding: 0 1rem; border: none;
 			color: $light; font-size: 0.75rem; line-height: 2rem; font-weight: bold; text-align: center; text-transform: uppercase; text-decoration: none;
 			&:hover{ cursor: pointer; }
-			&:active{ transform: scale(0.9); }
-			&:focus{ outline: none; }
+			&:active{ transform: scale(0.9); -webkit-tap-highlight-color: transparent; }
+			&:focus{ outline: none; box-shadow: none; }
 			&:before{
 				display: block; content: ""; width: 1rem; height: 1rem; background: no-repeat center center / contain;
 				margin-right: 0.5rem;
 			}
 		}
 		#sync{ background: $important; border-radius: 1rem; }
-		#sync:hover{ background-color: mix($important, $light, 80%); }
+		#sync:hover{ background: color.adjust($important, $saturation: 35%, $lightness: 10%); }
 		#sync:before{ @include icon(2, 1); }
 		#game-control, #caster-control{ visibility: hidden; }
-		#game-control{ background: $league; border-radius: 1rem 0 0 1rem; }
-		#game-control:hover{ background: mix($league, $light, 80%); }
-		#caster-control{ background: $twitch; border-radius: 0 1rem 1rem 0; }
-		#caster-control:hover{ background: mix($twitch, $light, 80%); }
+		#game-control{ background: $league; border-radius: 1rem 0 0 1rem; transform-origin: right center; }
+		#game-control:hover{ background: color.adjust($league, $saturation: 35%, $lightness: 10%); }
+		#caster-control{ background: $twitch; border-radius: 0 1rem 1rem 0; transform-origin: left center; }
+		#caster-control:hover{ background: color.adjust($twitch, $saturation: 35%, $lightness: 10%); }
 		#game-control:before, #caster-control:before{ @include icon(0, 1); }
 		#game-control.paused:before, #caster-control.paused:before{ @include icon(1, 1); }
 		#fullscreen{ background: $twitch; border-radius: 1rem; }
-		#fullscreen:hover{ background: mix($twitch, $light, 80%); }
+		#fullscreen:hover{ background: color.adjust($twitch, $saturation: 35%, $lightness: 10%); }
 		#fullscreen:before{ @include icon(3, 0); }
 	}
 
@@ -104,22 +107,104 @@ aside{
 	.controls{
 		position: absolute; z-index: 1; bottom: 0; width: 100%; padding: 1rem; box-sizing: border-box;
 		display: flex; align-items: center; visibility: hidden;
-		.icon{ width: 1rem; height: 1rem; margin-right: 0.5rem; }
-		#volume-icon{ @include icon(1, 2); }
-		#caster-volume{
-			flex: 1; background: $twitch; margin: 0; -webkit-appearance: none; appearance: none;
-			&:focus{ outline: none; }
-			&:hover{ cursor: pointer; }
-			&::-webkit-slider-runnable-track{ background: $twitch; }
-			&::-moz-range-track{ background: $twitch; }
-			&::-webkit-slider-thumb{ -webkit-appearance: none; background: $light; width: 1rem; height: 1rem; border: none; border-radius: 0; }
-			&::-moz-range-thumb{ -webkit-appearance: none; background: $light; width: 1rem; height: 1rem; border: none; border-radius: 0; }
-		}
 	}
 	&:hover .controls{ visibility: visible; }
+}
+
+.volume-control{
+	display: flex; align-items: center; padding: 1rem; box-sizing: border-box;
+	.icon{
+		display: flex; justify-content: center; align-items: center; width: 2rem; height: 2rem;
+		margin-right: 0.5rem; background: $twitch; border-radius: 1rem;
+		&:before{ display: block; content: ""; width: 1rem; height: 1rem; }
+	}
+	.volume-icon:before{ @include icon(1, 2); }
+	input{
+		flex: 1; background: $twitch; margin: 0; -webkit-appearance: none; appearance: none;
+		&:focus{ outline: none; }
+		&:hover{ cursor: pointer; }
+		&::-webkit-slider-runnable-track{ background: $twitch; }
+		&::-moz-range-track{ background: $twitch; }
+		&::-webkit-slider-thumb{ -webkit-appearance: none; background: $light; width: 1rem; height: 1rem; border: none; border-radius: 0; }
+		&::-moz-range-thumb{ -webkit-appearance: none; background: $light; width: 1rem; height: 1rem; border: none; border-radius: 0; }
+	}
 }
 
 #live-chat{
 	flex: 1;
 	#live-chat-embed{ position: absolute; width: 100%; height: calc(100vh + 17vh - (25vw*(9/16))); top: -17vh; }
+}
+
+@media (orientation: landscape) and (max-width: 48rem){
+	
+	#main-view{
+		width: 100%;
+		iframe{ pointer-events: none; }
+		.controls{
+			height: 100%; top: auto; bottom: 0; align-items: flex-end;
+			transform: translateY(0); padding: 5vw; box-sizing: border-box;
+
+			/* Disable the controls while hidden */
+			opacity: 0;
+			&>*{ pointer-events: none; }
+
+			/* Re-enabled them when visible */
+			&.visible{ opacity: 1; }
+			&.visible>*{ pointer-events: all; }
+
+			.screen-controls{ right: 5vw; top: 5vw; }
+			.volume-control{ display: flex; }
+			.button{
+				height: 7vw; padding: 0 3vw; font-size: 2.5vw; line-height: 7vw;
+			}
+			#sync:hover{ background: $important; }
+			#game-control:hover{ background: $league; }
+			#caster-control:hover{ background: $twitch; }
+			#fullscreen:hover{ background: $twitch; }
+			#sync{ border-radius: 7vw; }
+			#game-control{ border-radius: 7vw 0 0 7vw; }
+			#caster-control{ border-radius: 0 7vw 7vw 0; }
+			#fullscreen{ border-radius: 7vw; }
+		}
+
+		&.timer-focus{
+			iframe{ transform: scale(7); transform-origin: 54.5% top; }
+		}
+	}
+
+	aside{
+		position: absolute; z-index: 1; right: 0; width: 50vw; overflow: hidden;
+		visibility: visible;
+	}
+
+	#caster-view{
+		height: 100%;
+		iframe{ pointer-events: none; }
+		&.caster-focus{
+			position: absolute; bottom: 28%; right: 0; width: 7.25vw * (16/9); height: 7.25vw;
+			iframe{ transform: scale(3); transform-origin: 90% 88%; }
+		}
+		&.timer-focus iframe{ transform: scale(4); transform-origin: center 34%; }
+		.controls{ display: none; }
+	}
+
+	.volume-control{
+		position: absolute; bottom: 42%; right: 0; width: 50vw; margin: 0 5vw; padding: 0; overflow: hidden;
+		&.toggled{
+			.icon, input{ transform: translateX(0); }
+		}
+		.icon, input{ transform: translateX(42.5vw); transition: all 300ms ease;  }
+
+		.icon{ width: 7vw; height: 7vw; border-radius: 7vw; }
+		.icon:before{ transform: scale(1.5); }
+		input{
+			background: $light; border: 3vw solid $light; border-radius: 7vw;
+			&::-webkit-slider-runnable-track{ height: 1vw; border-radius: 1vw; }
+			&::-moz-range-track{ height: 1vw; border-radius: 1vw; }
+			&::-webkit-slider-thumb{ width: 4vw; height: 4vw; box-shadow: 0 0.25vw 1vw rgba($dark100, 0.35); transform: translateY(-1.5vw); border: 0.25vw solid $twitch; border-radius: 4vw; }
+			&::-moz-range-thumb{ width: 4vw; height: 4vw; box-shadow: 0 0.25vw 1vw rgba($dark100, 0.35); transform: translateY(-1.5vw); border: 0.25vw solid $twitch; border-radius: 4vw; }
+		}
+	}
+
+	#live-chat{ display: none; }
 }

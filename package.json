@@ -5,11 +5,11 @@
 	"author": "Kevin Le Guillou <contact@kevinleguillou.com>",
 	"license": "MIT",
 	"dependencies": {
-		"node-sass": "^4.12.0",
+		"sass": "^1.23.3",
 		"webpack": "^4.41.2",
 		"webpack-cli": "^3.3.9"
 	},
 	"scripts": {
-		"sass": "node-sass -w --output-style=compressed --include-path scss scss/app.scss dist/app.css"
+		"sass": "sass --watch --style=expanded --no-source-map --load-path=scss scss/app.scss dist/app.css"
 	}
 }

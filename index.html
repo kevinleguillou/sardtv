@@ -33,6 +33,10 @@
 			<button class="button" id="sync"><span>Sync</span></button>
 			<button class="button" id="caster-control">Sardoche</button>
 		</div>
+		<div class="volume-control" id="mobile-volume-control">
+			<div class="icon volume-icon" id="volume-toggle"></div>
+			<input type="range" id="mobile-caster-volume">
+		</div>
 		<div class="screen-controls">
 			<button class="button" id="fullscreen">Plein écran</button>
 		</div>
@@ -44,8 +48,8 @@
 <aside>
 	<section id="caster-view" class="is-loading">
 		<div class="loader"></div>
-		<div class="controls">
-			<div class="icon" id="volume-icon"></div>
+		<div class="controls volume-control">
+			<div class="icon volume-icon"></div>
 			<input type="range" id="caster-volume">
 		</div>
 	</section>
