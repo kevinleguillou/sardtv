@@ -107,6 +107,13 @@ aside{
 	.controls{
 		position: absolute; z-index: 1; bottom: 0; width: 100%; padding: 1rem; box-sizing: border-box;
 		display: flex; align-items: center; visibility: hidden;
+		input{
+			border-radius: 1rem;
+			&::-webkit-slider-runnable-track{ border-radius: 1rem; }
+			&::-moz-range-track{ border-radius: 1rem; }
+			&::-webkit-slider-thumb{ transform: scale(1.5); border-radius: 1rem; }
+			&::-moz-range-thumb{ transform: scale(1.5); border-radius: 1rem; }
+		}
 	}
 	&:hover .controls{ visibility: visible; }
 }

@@ -344,6 +344,23 @@ aside {
   align-items: center;
   visibility: hidden;
 }
+#caster-view .controls input {
+  border-radius: 1rem;
+}
+#caster-view .controls input::-webkit-slider-runnable-track {
+  border-radius: 1rem;
+}
+#caster-view .controls input::-moz-range-track {
+  border-radius: 1rem;
+}
+#caster-view .controls input::-webkit-slider-thumb {
+  transform: scale(1.5);
+  border-radius: 1rem;
+}
+#caster-view .controls input::-moz-range-thumb {
+  transform: scale(1.5);
+  border-radius: 1rem;
+}
 #caster-view:hover .controls {
   visibility: visible;
 }
