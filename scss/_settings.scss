@@ -25,11 +25,12 @@
 	}
 
 	.about{
-		margin-top: auto;
+		margin-top: auto; padding-top: 10vh;
 		p{ line-height: 1.5rem; color: mix($light, $dark100, 75%); }
+		p.minor{ font-size: 0.85rem; line-height: 0.85*1.5rem; color: mix($light, $dark100, 50%); }
+		p+p{ padding-top: 1rem; }
 		a{ color: #94c8f9; }
 		a:hover{ border-bottom: 1px solid #94c8f9; }
-		p+p{ padding-top: 1rem; }
 		.github{ position: relative; margin-left: 1.5rem; }
 		.github:before{ position: absolute; top: 0.2rem; left: -1.5rem; display: block; content: ""; vertical-align: middle; width: 1rem; height: 1rem; @include icon(2, 2); }
 	}
@@ -38,6 +39,6 @@
 
 @media (orientation: landscape) and (max-width: 48rem){
 	#settings{
-		padding: 5vw;
+		padding: 5vw; overflow: scroll;
 	}
 }

@@ -19,15 +19,6 @@ class TwitchView{
 		this.registerListeners();
 		this.sync(false);
 	}
-	togglePause(){
-		if(this.player.isPaused()){
-			this.player.play();
-			document.querySelector("#caster-control").classList.remove("paused");
-		}else{
-			this.player.pause();
-			document.querySelector("#caster-control").classList.add("paused");
-		}
-	}
 	setSize(){
 		this.player.setWidth(this.domElement.offsetWidth);
 		this.player.setHeight(this.domElement.offsetHeight);
@@ -132,6 +123,13 @@ class YoutubeView{
 		}else{
 			this.player.pauseVideo();
 			document.querySelector("#game-control").classList.add("paused");
+		}
+	}
+	catchUpLive(){
+		this.player.seekTo(this.player.getCurrentTime() + 60);
+		if(this.player.getPlayerState() == YT.PlayerState.PAUSED){
+			this.player.playVideo();
+			document.querySelector("#game-control").classList.remove("paused");
 		}
 	}
 	setSize(){

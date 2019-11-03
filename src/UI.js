@@ -45,8 +45,8 @@ export default class UI{
 		document.querySelector("#game-control").addEventListener("click", ()=>{
 			this.mainPlayer.togglePause();
 		});
-		document.querySelector("#caster-control").addEventListener("click", ()=>{
-			this.casterPlayer.togglePause();
+		document.querySelector("#game-reset-control").addEventListener("click", ()=>{
+			this.mainPlayer.catchUpLive();
 		});
 		document.querySelector("#fullscreen").addEventListener("click", ()=>{
 			this.toggleFullscreen();

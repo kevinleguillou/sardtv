@@ -57,7 +57,7 @@ button:focus{ outline: none; }
 		position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
 		transition: all 300ms ease; transform: translateY(-3rem);
 
-		.sync-controls{ display: flex; justify-content: center; transform: translateX(5%); }
+		.sync-controls{ display: flex; justify-content: center; transform: translateX(-0.9%); }
 		.settings-controls{ position: absolute; left: 1rem; }
 		.screen-controls{ position: absolute; right: 1rem; }
 		.volume-control{ display: none; }
@@ -78,13 +78,14 @@ button:focus{ outline: none; }
 		#sync{ background: $important; border-radius: 1rem; }
 		#sync:hover{ background: color.adjust($important, $saturation: 35%, $lightness: 10%); }
 		#sync:before{ @include icon(2, 1); }
-		#game-control, #caster-control{ visibility: hidden; }
+		#game-control, #game-reset-control{ visibility: hidden; }
 		#game-control{ background: $league; border-radius: 1rem 0 0 1rem; transform-origin: right center; }
+		#game-control:before{ @include icon(0, 1); }
+		#game-control.paused:before{ @include icon(1, 1); }
 		#game-control:hover{ background: color.adjust($league, $saturation: 35%, $lightness: 10%); }
-		#caster-control{ background: $twitch; border-radius: 0 1rem 1rem 0; transform-origin: left center; }
-		#caster-control:hover{ background: color.adjust($twitch, $saturation: 35%, $lightness: 10%); }
-		#game-control:before, #caster-control:before{ @include icon(0, 1); }
-		#game-control.paused:before, #caster-control.paused:before{ @include icon(1, 1); }
+		#game-reset-control{ background: $league; border-radius: 0 1rem 1rem 0; transform-origin: left center; }
+		#game-reset-control:hover{ background: color.adjust($league, $saturation: 35%, $lightness: 10%); }
+		#game-reset-control:before{ @include icon(2, 1); }
 		#fullscreen{ background: $twitch; border-radius: 1rem; }
 		#fullscreen:hover{ background: color.adjust($twitch, $saturation: 35%, $lightness: 10%); }
 		#fullscreen:before{ @include icon(3, 0); }
@@ -94,7 +95,7 @@ button:focus{ outline: none; }
 		#sync{ border-radius: 0; }
 		#sync span{ display: none; }
 		#sync:before{ @include icon(3, 1); margin: 0; }
-		#game-control, #caster-control{ visibility: visible; }
+		#game-control, #game-reset-control{ visibility: visible; }
 	}
 
 	&:hover .controls{ transform: translateY(0); }
@@ -184,7 +185,7 @@ aside{
 			#open-settings{ border-radius: 7vw; }
 			#sync{ border-radius: 7vw; }
 			#game-control{ border-radius: 7vw 0 0 7vw; }
-			#caster-control{ border-radius: 0 7vw 7vw 0; }
+			#game-reset-control{ border-radius: 0 7vw 7vw 0; }
 			#fullscreen{ border-radius: 7vw; }
 		}
 
