@@ -1,7 +1,7 @@
 export default class TwitchAPI{
 	constructor(){
 		this.clientID = "w7noco2018pomibp0cc07rhewamy6k";
-		this.url = "https://api.twitch.tv/helix/streams?user_login=bobross";
+		this.url = "https://api.twitch.tv/helix/streams?user_login=sardoche";
 
 		this.settings = {
 			headers: { "Client-ID" : this.clientID }
