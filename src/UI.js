@@ -36,7 +36,7 @@ export default class UI{
 		}
 	}
 	registerListeners(){
-		// Register the actions for each button
+		// Sync buttons
 		document.querySelector("#sync").addEventListener("click", ()=>{
 			let toggledValue = !this.casterPlayer.isInSyncMode;
 			this.casterPlayer.sync(toggledValue);
@@ -48,8 +48,18 @@ export default class UI{
 		document.querySelector("#game-reset-control").addEventListener("click", ()=>{
 			this.mainPlayer.catchUpLive();
 		});
+
+		// Toggle Fullscreen
 		document.querySelector("#fullscreen").addEventListener("click", ()=>{
 			this.toggleFullscreen();
+		});
+
+		// Toggle Settings
+		document.querySelector("#open-settings").addEventListener("click", (event)=>{
+			document.querySelector("#settings").classList.add("toggled");
+		});
+		document.querySelector("#close-settings").addEventListener("click", (event)=>{
+			document.querySelector("#settings").classList.remove("toggled");
 		});
 
 		// Toggle controls visibility when the screen is tapped on mobile
@@ -62,34 +72,25 @@ export default class UI{
 			}
 		});
 
-		// Toggle Settings
-		document.querySelector("#open-settings").addEventListener("click", (event)=>{
-			document.querySelector("#settings").classList.add("toggled");
-		});
-		document.querySelector("#close-settings").addEventListener("click", (event)=>{
-			document.querySelector("#settings").classList.remove("toggled");
-		});
-
 		// Hide the chat loader once the iframe is loaded
 		document.querySelector("#live-chat-embed").addEventListener("load", (event)=>{
 			document.querySelector("#live-chat").classList.remove("is-loading");
 		});
 	}
 	toggleFullscreen(){
-		if(!this.fullscreen){
+		if(!document.fullscreenElement){
 			document.body.requestFullscreen().then(()=>{
-				this.fullscreen = true;
-				window.screen.orientation.lock("landscape").then(function(){
+				window.screen.orientation.lock("landscape").then(()=>{
 					this.landscape = true;
-				}).catch(function(err){
+				}).catch((err)=>{
 					this.landscape = false;
 				});
 			}).catch((err)=>{
-				this.fullscreen = false;
+
 			});
 		}else{
 			document.exitFullscreen().then(()=>{
-				this.fullscreen = false;
+
 			});
 		}	
 	}
