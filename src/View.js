@@ -11,10 +11,9 @@ class TwitchView{
 		this.playerOptions = {
 			width: this.domElement.offsetWidth,
 			height: this.domElement.offsetHeight,
-			controls: false
+			controls: false,
+			channel: playbackSettings.channel
 		};
-		if(playbackSettings.video) this.playerOptions.video = playbackSettings.video;
-		if(playbackSettings.channel) this.playerOptions.channel = playbackSettings.channel;
 		this.player = new Twitch.Player(domElementID, this.playerOptions);
 		this.registerListeners();
 		this.sync(false);

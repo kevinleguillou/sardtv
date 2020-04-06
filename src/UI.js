@@ -20,10 +20,6 @@ export default class UI{
 				video: "r76KQmK2nLE",
 				timestamp: "11747",
 			};
-			this.casterSettings = {
-				video: "499832186",
-				timestamp: 14666,
-			};
 		}
 		this.isMobile = (/Mobi/i.test(navigator.userAgent));
 
