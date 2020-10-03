@@ -11,7 +11,7 @@ class TwitchView{
 		this.playerOptions = {
 			width: this.domElement.offsetWidth,
 			height: this.domElement.offsetHeight,
-			controls: false,
+			controls: true,
 			channel: playbackSettings.channel
 		};
 		this.player = new Twitch.Player(domElementID, this.playerOptions);
@@ -19,8 +19,8 @@ class TwitchView{
 		this.sync(false);
 	}
 	setSize(){
-		this.player.setWidth(this.domElement.offsetWidth);
-		this.player.setHeight(this.domElement.offsetHeight);
+		this.player._options.width = this.domElement.offsetWidth;
+		this.player._options.height = this.domElement.offsetHeight;
 	}
 	registerListeners(){
 		this.player.addEventListener(Twitch.Player.READY, ()=>{
@@ -29,16 +29,11 @@ class TwitchView{
 			if(this.playbackSettings.timestamp){
 				this.player.seek(this.playbackSettings.timestamp);
 			}
-			document.querySelector("#caster-volume").value = this.player.getVolume() * 100;
 			this.hideLoader();
 			this.populateQualitySettings();
 		});
 		this.player.addEventListener(Twitch.Player.PLAYBACK_BLOCKED, ()=>{
 			console.log("PLAYBACK_BLOCKED");
-		});
-		document.querySelector("#caster-volume").addEventListener("input", (event)=>{
-			this.player.setVolume(event.srcElement.value/100);
-			this.player.setMuted(false);
 		});
 		document.querySelector("#mobile-caster-volume").addEventListener("input", (event)=>{
 			this.player.setVolume(event.srcElement.value/100);

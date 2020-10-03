@@ -111,6 +111,7 @@ aside{
 	iframe{ transition: all 300ms ease; }
 	&.caster-focus iframe{ transform: scale(2.4); transform-origin: 100% 92%; }
 	&.timer-focus iframe{ transform: scale(3); transform-origin: 50% 10%; }
+	&:hover iframe{ transform: scale(1); }
 
 	#viewer-count{
 		position: absolute; z-index: 2; top: 0; visibility: hidden;

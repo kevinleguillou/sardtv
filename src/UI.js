@@ -6,19 +6,18 @@ import * as View from "View";
 */
 
 export default class UI{
-	constructor(){
+	constructor(streamIDs){
 		// Get the id from the URL parameters
 		this.matchSettings = {
-			video: window.location.hash.substring(1)
+			video: streamIDs.match
 		};
 		this.casterSettings = {
-			channel: "sardoche"
+			channel: streamIDs.caster
 		};
 		// If empty, show VOD
 		if(this.matchSettings.video == ""){
 			this.matchSettings = {
-				video: "r76KQmK2nLE",
-				timestamp: "11747",
+				video: "bqIlL9cv3UU"
 			};
 		}
 		this.isMobile = (/Mobi/i.test(navigator.userAgent));
