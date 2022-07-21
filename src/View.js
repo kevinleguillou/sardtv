@@ -24,6 +24,7 @@ class TwitchView{
 	}
 	registerListeners(){
 		this.player.addEventListener(Twitch.Player.READY, ()=>{
+			this.player.setMuted(false);
 		});
 		this.player.addEventListener(Twitch.Player.PLAYING, ()=>{
 			if(this.playbackSettings.timestamp){

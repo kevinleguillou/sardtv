@@ -9,20 +9,20 @@ export default class UI{
 	constructor(streamIDs){
 		// Get the id from the URL parameters
 		this.matchSettings = {
-			video: streamIDs.match
+			channel: streamIDs.match
 		};
 		this.casterSettings = {
 			channel: streamIDs.caster
 		};
 		// If empty, show VOD
-		if(this.matchSettings.video == ""){
-			this.matchSettings = {
-				video: "bqIlL9cv3UU"
-			};
-		}
+		// if(this.matchSettings.video == ""){
+		// 	this.matchSettings = {
+		// 		video: "bqIlL9cv3UU"
+		// 	};
+		// }
 		this.isMobile = (/Mobi/i.test(navigator.userAgent));
 
-		this.mainPlayer = new View.YoutubeView("youtube-player", this.matchSettings);
+		this.mainPlayer = new View.TwitchView("main-player", this.matchSettings);
 		this.casterPlayer = new View.TwitchView("caster-view", this.casterSettings);
 		this.registerListeners();
 

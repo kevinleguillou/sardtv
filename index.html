@@ -19,14 +19,14 @@
 	<meta name="twitter:creator" content="@Sardoche_Lol">
 	<meta name="twitter:site" content="@Sardoche_Lol">
 
-	<link rel="stylesheet" href="dist/app.css?20201003">
+	<link rel="stylesheet" href="dist/app.css">
 	<script async src="https://player.twitch.tv/js/embed/v1.js"></script>
 	<script async src="https://www.youtube.com/iframe_api"></script>
-	<script async src="dist/bundle.js?20201003"></script>	
+	<script async src="dist/bundle.js"></script>	
 </head>
 <body>
 
-<main id="main-view" class="is-loading">
+<main id="main-view">
 	<div id="settings">
 		<button id="close-settings">Fermer</button>
 		<h2>Paramètres</h2>
@@ -63,8 +63,10 @@
 			<button class="button" id="fullscreen">Plein écran</button>
 		</div>
 	</div>
-	<div class="loader"></div>
-	<div id="youtube-player"></div>
+	
+	<div id="main-player" class="is-loading">
+		<div class="loader"></div>
+	</div>
 </main>
 
 <aside>

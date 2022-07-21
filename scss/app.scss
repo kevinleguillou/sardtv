@@ -53,6 +53,12 @@ button:focus{ outline: none; }
 	&.timer-focus iframe{ transform: scale(10); transform-origin: center top; }
 	&.game-focus iframe{ transform: scale(1); transform-origin: 50% 50%; }
 
+	#main-player {
+		position: relative; width: 100%; height: 100%;
+		iframe{ position: absolute; width: 100%; height: 100%; }
+	}
+	
+
 	.controls{
 		position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
 		transition: all 300ms ease; transform: translateY(-3rem);
@@ -75,7 +81,7 @@ button:focus{ outline: none; }
 		#open-settings{ background: $twitch; border-radius: 1rem; }
 		#open-settings:hover{ background: color.adjust($twitch, $saturation: 35%, $lightness: 10%); }
 		#open-settings:before{ @include icon(0, 3); margin: 0; }
-		#sync{ background: $important; border-radius: 1rem; }
+		#sync{ display: none; background: $important; border-radius: 1rem; }
 		#sync:hover{ background: color.adjust($important, $saturation: 35%, $lightness: 10%); }
 		#sync:before{ @include icon(2, 1); }
 		#game-control, #game-reset-control{ visibility: hidden; }
@@ -109,8 +115,8 @@ aside{
 #caster-view{
 	height: 25vw*(9/16);
 	iframe{ transition: all 300ms ease; }
-	&.caster-focus iframe{ transform: scale(2.4); transform-origin: 100% 92%; }
-	&.timer-focus iframe{ transform: scale(3); transform-origin: 50% 10%; }
+	&.caster-focus iframe{ transform: scale(1); transform-origin: center center; }
+	&.timer-focus iframe{ transform: scale(1); transform-origin: center center; }
 	&:hover iframe{ transform: scale(1); }
 
 	#viewer-count{

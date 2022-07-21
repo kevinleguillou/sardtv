@@ -17,7 +17,7 @@ function waitForTwitch(){
 window.onYouTubeIframeAPIReady = ()=>{
 	waitForTwitch().then(()=>{
 		let ui = new UI({
-			match: window.location.hash.substring(1),
+			match: "otplol_",
 			caster: "sardoche",
 		});
 	});
