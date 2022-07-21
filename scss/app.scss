@@ -58,7 +58,6 @@ button:focus{ outline: none; }
 		iframe{ position: absolute; width: 100%; height: 100%; }
 	}
 	
-
 	.controls{
 		position: absolute; z-index: 2; display: flex; justify-content: center; width: 100%; top: 1rem;
 		transition: all 300ms ease; transform: translateY(-3rem);
@@ -208,13 +207,11 @@ aside{
 
 	#caster-view{
 		height: 100%;
-		iframe{ pointer-events: none; }
+		iframe{ width: 100%; height: 100%; pointer-events: none; }
 		&.caster-focus{
 			position: absolute; bottom: 28%; right: 0; width: 7.25vw * (16/9); height: 7.25vw;
 			.loader:before{ height: 2rem; width: 2rem; @include icon(1, 0, 2rem); }
-			iframe{ transform: scale(3); transform-origin: 90% 88%; }
 		}
-		&.timer-focus iframe{ transform: scale(4); transform-origin: center 34%; }
 		.controls{ display: none; }
 	}
 
